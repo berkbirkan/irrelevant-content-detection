@@ -1,205 +1,180 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="20%" alt="IRRELEVANT-CONTENT-DETECTION-logo">
-</p>
-<p align="center">
-    <h1 align="center">IRRELEVANT-CONTENT-DETECTION</h1>
-</p>
-<p align="center">
-    <em>Cut through the clutter with precision.</em>
-</p>
-<p align="center">
-	<img src="https://img.shields.io/github/license/berkbirkan/irrelevant-content-detection?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
-	<img src="https://img.shields.io/github/last-commit/berkbirkan/irrelevant-content-detection?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-	<img src="https://img.shields.io/github/languages/top/berkbirkan/irrelevant-content-detection?style=default&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/berkbirkan/irrelevant-content-detection?style=default&color=0080ff" alt="repo-language-count">
-</p>
-<p align="center">
-	<!-- default option, no dependency badges. -->
-</p>
 
-<br>
+# Irrelevant Content Detection
 
-#####  Table of Contents
+Irrelevant Content Detection is a Python package for detecting and cleaning irrelevant content from text and HTML. It leverages machine learning techniques such as TF-IDF and KMeans clustering to identify and remove non-relevant information from documents.
 
-- [ Overview](#-overview)
-- [ Features](#-features)
-- [ Repository Structure](#-repository-structure)
-- [ Modules](#-modules)
-- [ Getting Started](#-getting-started)
-    - [ Prerequisites](#-prerequisites)
-    - [ Installation](#-installation)
-    - [ Usage](#-usage)
-    - [ Tests](#-tests)
-- [ Project Roadmap](#-project-roadmap)
-- [ Contributing](#-contributing)
-- [ License](#-license)
-- [ Acknowledgments](#-acknowledgments)
+## Table of Contents
 
----
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Calculate Relevance Scores](#calculate-relevance-scores)
+  - [Detect Irrelevant Content in Text](#detect-irrelevant-content-in-text)
+  - [Clean Irrelevant Content from Text](#clean-irrelevant-content-from-text)
+  - [Extract Text from HTML](#extract-text-from-html)
+  - [Detect Irrelevant Content in HTML](#detect-irrelevant-content-in-html)
+  - [Clean Irrelevant Content from HTML](#clean-irrelevant-content-from-html)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
 
-##  Overview
+## Installation
 
-The irrelevant-content-detection project is a sophisticated software tool that leverages TF-IDF vectors to analyze text relevance and effectively identify and clean irrelevant content within text and HTML documents. With a crucial focus on parsing HTML to extract textual information, this project serves as a valuable asset for users aiming to efficiently detect and remove irrelevant data from their textual content.
+You can install the package using pip:
 
----
+\`\`\`bash
+pip install irrelevant-content-detection
+\`\`\`
 
-##  Features
+Alternatively, you can clone the repository and install it locally:
 
-|    |   Feature         | Description |
-|----|-------------------|---------------------------------------------------------------|
-| ⚙️ | **Architecture**  | Python project structured with a main detector module for analyzing text relevance using TF-IDF vectors. The extraction of relevant text from HTML is crucial for identifying and removing irrelevant content. |
-| 🔩 | **Code Quality**  | The codebase follows standard Python conventions with clear variable names and well-documented functions. Code is structured and readable, adhering to PEP 8 guidelines for consistency. |
-| 📄 | **Documentation** | Limited documentation available. Could benefit from more detailed explanations on module usage and code functionalities. The `setup.py` provides metadata info, but code-specific documentation is lacking. |
-| 🔌 | **Integrations**  | Relies on Python and setup tools for project dependencies. External libraries like `nltk` and `beautifulsoup4` might be used for text parsing and analysis. |
-| 🧩 | **Modularity**    | The project exhibits modularity with a separate detector module for text relevance analysis. Codebase could be further structured for enhanced reusability and maintainability. |
-| 🧪 | **Testing**       | Testing frameworks and tools are not explicitly mentioned in the repository. Adding unit tests using tools like `unittest` or `pytest` would enhance code reliability. |
-| ⚡️ | **Performance**   | Efficiency could be improved by optimizing text parsing and relevance analysis algorithms. Resource usage may vary depending on the size and complexity of input text. |
-| 🛡️ | **Security**      | No specific security measures mentioned. Implementing data sanitization techniques and access controls is recommended for handling sensitive information securely. |
-| 📦 | **Dependencies**  | Key dependencies include Python for the project runtime, along with setup tools specified in `setup.py` for package management. Additional libraries like `nltk` and `beautifulsoup4` may be used. |
+\`\`\`bash
+git clone https://github.com/berkbirkan/irrelevant-content-detection.git
+cd irrelevant-content-detection
+pip install .
+\`\`\`
 
----
+## Usage
 
-##  Repository Structure
+The package provides several functions to detect and clean irrelevant content from text and HTML.
 
-```sh
-└── irrelevant-content-detection/
-    ├── README.md
-    ├── irrelevant_content_detection
-    │   ├── __init__.py
-    │   ├── __pycache__
-    │   └── detector.py
-    ├── setup.py
-    └── tests
-        ├── __pycache__
-        └── test_detector.py
-```
+### Calculate Relevance Scores
 
----
+The \`calculate_relevance_scores\` function calculates the TF-IDF scores for a list of texts.
 
-##  Modules
+\`\`\`python
+from irrelevant_content_detection import calculate_relevance_scores
 
-<details closed><summary>.</summary>
+texts = [
+    "Python is a programming language.",
+    "This text is not relevant."
+]
 
-| File | Summary |
-| --- | --- |
-| [setup.py](https://github.com/berkbirkan/irrelevant-content-detection/blob/main/setup.py) | Defines package metadata and dependency information. |
+tfidf_scores = calculate_relevance_scores(texts)
+print(tfidf_scores)
+\`\`\`
 
-</details>
+### Detect Irrelevant Content in Text
 
-<details closed><summary>irrelevant_content_detection</summary>
+The \`detect_irrelevant_contents\` function detects irrelevant content from a list of texts.
 
-| File | Summary |
-| --- | --- |
-| [detector.py](https://github.com/berkbirkan/irrelevant-content-detection/blob/main/irrelevant_content_detection/detector.py) | Analyzes text relevance using TF-IDF vectors. Detects and cleans irrelevant content in text and HTML. Parses HTML to extract text. Crucial for identifying and removing irrelevant data. |
+\`\`\`python
+from irrelevant_content_detection import detect_irrelevant_contents
 
-</details>
+texts = [
+    "Python is a programming language.",
+    "Python is great for data science.",
+    "This text is not relevant.",
+    "Machine learning with Python is fun.",
+    "Unrelated text here."
+]
 
----
+irrelevant_texts = detect_irrelevant_contents(texts)
+print(irrelevant_texts)
+\`\`\`
 
-##  Getting Started
+### Clean Irrelevant Content from Text
 
-###  Prerequisites
+The \`clean_irrelevant_contents\` function removes irrelevant content from a list of texts.
 
-**Python**: `version x.y.z`
+\`\`\`python
+from irrelevant_content_detection import clean_irrelevant_contents
 
-###  Installation
+texts = [
+    "Python is a programming language.",
+    "Python is great for data science.",
+    "This text is not relevant.",
+    "Machine learning with Python is fun.",
+    "Unrelated text here."
+]
 
-Build the project from source:
+cleaned_texts = clean_irrelevant_contents(texts)
+print(cleaned_texts)
+\`\`\`
 
-1. Clone the irrelevant-content-detection repository:
-```sh
-❯ git clone https://github.com/berkbirkan/irrelevant-content-detection
-```
+### Extract Text from HTML
 
-2. Navigate to the project directory:
-```sh
-❯ cd irrelevant-content-detection
-```
+The \`extract_text_from_html\` function extracts all text from an HTML string.
 
-3. Install the required dependencies:
-```sh
-❯ pip install -r requirements.txt
-```
+\`\`\`python
+from irrelevant_content_detection import extract_text_from_html
 
-###  Usage
+html = """<html>
+    <body>
+        <p>Python is a programming language.</p>
+        <p>This text is not relevant.</p>
+    </body>
+</html>"""
 
-To run the project, execute the following command:
+texts = extract_text_from_html(html)
+print(texts)
+\`\`\`
 
-```sh
-❯ python main.py
-```
+### Detect Irrelevant Content in HTML
 
-###  Tests
+The \`detect_irrelevant_html\` function detects irrelevant content from an HTML string.
 
-Execute the test suite using the following command:
+\`\`\`python
+from irrelevant_content_detection import detect_irrelevant_html
 
-```sh
-❯ pytest
-```
+html = """<html>
+    <body>
+        <p>Python is a programming language.</p>
+        <p>Python is great for data science.</p>
+        <p>This text is not relevant.</p>
+        <p>Machine learning with Python is fun.</p>
+        <p>Unrelated text here.</p>
+    </body>
+</html>"""
 
----
+irrelevant_html = detect_irrelevant_html(html)
+print(irrelevant_html)
+\`\`\`
 
-##  Project Roadmap
+### Clean Irrelevant Content from HTML
 
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
+The \`clean_irrelevant_html\` function removes irrelevant content from an HTML string.
 
----
+\`\`\`python
+from irrelevant_content_detection import clean_irrelevant_html
 
-##  Contributing
+html = """<html>
+    <body>
+        <p>Python is a programming language.</p>
+        <p>Python is great for data science.</p>
+        <p>This text is not relevant.</p>
+        <p>Machine learning with Python is fun.</p>
+        <p>Unrelated text here.</p>
+    </body>
+</html>"""
 
-Contributions are welcome! Here are several ways you can contribute:
+cleaned_html = clean_irrelevant_html(html)
+print(cleaned_html)
+\`\`\`
 
-- **[Report Issues](https://github.com/berkbirkan/irrelevant-content-detection/issues)**: Submit bugs found or log feature requests for the `irrelevant-content-detection` project.
-- **[Submit Pull Requests](https://github.com/berkbirkan/irrelevant-content-detection/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-- **[Join the Discussions](https://github.com/berkbirkan/irrelevant-content-detection/discussions)**: Share your insights, provide feedback, or ask questions.
+## Testing
 
-<details closed>
-<summary>Contributing Guidelines</summary>
+To run the tests, you can use unittest which is included in the Python Standard Library:
 
-1. **Fork the Repository**: Start by forking the project repository to your github account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
-   ```sh
-   git clone https://github.com/berkbirkan/irrelevant-content-detection
-   ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
-   ```sh
-   git checkout -b new-feature-x
-   ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
-   ```sh
-   git commit -m 'Implemented new feature x.'
-   ```
-6. **Push to github**: Push the changes to your forked repository.
-   ```sh
-   git push origin new-feature-x
-   ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
-</details>
+\`\`\`bash
+python -m unittest discover
+\`\`\`
 
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://github.com{/berkbirkan/irrelevant-content-detection/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=berkbirkan/irrelevant-content-detection">
-   </a>
-</p>
-</details>
+Or you can run the test file directly:
 
----
+\`\`\`bash
+python test_detector.py
+\`\`\`
 
-##  License
+## Contributing
 
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+Contributions are welcome! Please follow these steps to contribute:
 
----
+1. Fork the repository.
+2. Create a new branch with your feature or bugfix.
+3. Commit your changes.
+4. Push to your branch.
+5. Create a pull request.
 
-##  Acknowledgments
+## License
 
-- List any resources, contributors, inspiration, etc. here.
-
----
+This project is licensed under the MIT License. See the LICENSE file for more details.
