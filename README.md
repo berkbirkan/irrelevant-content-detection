@@ -21,17 +21,17 @@ Irrelevant Content Detection is a Python package for detecting and cleaning irre
 
 You can install the package using pip:
 
-\`\`\`bash
+```bash
 pip install irrelevant-content-detection
-\`\`\`
+```
 
 Alternatively, you can clone the repository and install it locally:
 
-\`\`\`bash
+```bash
 git clone https://github.com/berkbirkan/irrelevant-content-detection.git
 cd irrelevant-content-detection
 pip install .
-\`\`\`
+```
 
 ## Usage
 
@@ -39,9 +39,9 @@ The package provides several functions to detect and clean irrelevant content fr
 
 ### Calculate Relevance Scores
 
-The \`calculate_relevance_scores\` function calculates the TF-IDF scores for a list of texts.
+The `calculate_relevance_scores` function calculates the TF-IDF scores for a list of texts.
 
-\`\`\`python
+```python
 from irrelevant_content_detection import calculate_relevance_scores
 
 texts = [
@@ -51,13 +51,13 @@ texts = [
 
 tfidf_scores = calculate_relevance_scores(texts)
 print(tfidf_scores)
-\`\`\`
+```
 
 ### Detect Irrelevant Content in Text
 
-The \`detect_irrelevant_contents\` function detects irrelevant content from a list of texts.
+The `detect_irrelevant_contents` function detects irrelevant content from a list of texts.
 
-\`\`\`python
+```python
 from irrelevant_content_detection import detect_irrelevant_contents
 
 texts = [
@@ -70,13 +70,13 @@ texts = [
 
 irrelevant_texts = detect_irrelevant_contents(texts)
 print(irrelevant_texts)
-\`\`\`
+```
 
 ### Clean Irrelevant Content from Text
 
-The \`clean_irrelevant_contents\` function removes irrelevant content from a list of texts.
+The `clean_irrelevant_contents` function removes irrelevant content from a list of texts.
 
-\`\`\`python
+```python
 from irrelevant_content_detection import clean_irrelevant_contents
 
 texts = [
@@ -89,34 +89,37 @@ texts = [
 
 cleaned_texts = clean_irrelevant_contents(texts)
 print(cleaned_texts)
-\`\`\`
+```
 
 ### Extract Text from HTML
 
-The \`extract_text_from_html\` function extracts all text from an HTML string.
+The `extract_text_from_html` function extracts all text from an HTML string.
 
-\`\`\`python
+```python
 from irrelevant_content_detection import extract_text_from_html
 
-html = """<html>
+html = """
+<html>
     <body>
         <p>Python is a programming language.</p>
         <p>This text is not relevant.</p>
     </body>
-</html>"""
+</html>
+"""
 
 texts = extract_text_from_html(html)
 print(texts)
-\`\`\`
+```
 
 ### Detect Irrelevant Content in HTML
 
-The \`detect_irrelevant_html\` function detects irrelevant content from an HTML string.
+The `detect_irrelevant_html` function detects irrelevant content from an HTML string.
 
-\`\`\`python
+```python
 from irrelevant_content_detection import detect_irrelevant_html
 
-html = """<html>
+html = """
+<html>
     <body>
         <p>Python is a programming language.</p>
         <p>Python is great for data science.</p>
@@ -124,20 +127,22 @@ html = """<html>
         <p>Machine learning with Python is fun.</p>
         <p>Unrelated text here.</p>
     </body>
-</html>"""
+</html>
+"""
 
 irrelevant_html = detect_irrelevant_html(html)
 print(irrelevant_html)
-\`\`\`
+```
 
 ### Clean Irrelevant Content from HTML
 
-The \`clean_irrelevant_html\` function removes irrelevant content from an HTML string.
+The `clean_irrelevant_html` function removes irrelevant content from an HTML string.
 
-\`\`\`python
+```python
 from irrelevant_content_detection import clean_irrelevant_html
 
-html = """<html>
+html = """
+<html>
     <body>
         <p>Python is a programming language.</p>
         <p>Python is great for data science.</p>
@@ -145,25 +150,26 @@ html = """<html>
         <p>Machine learning with Python is fun.</p>
         <p>Unrelated text here.</p>
     </body>
-</html>"""
+</html>
+"""
 
 cleaned_html = clean_irrelevant_html(html)
 print(cleaned_html)
-\`\`\`
+```
 
 ## Testing
 
-To run the tests, you can use unittest which is included in the Python Standard Library:
+To run the tests, you can use `unittest` which is included in the Python Standard Library:
 
-\`\`\`bash
+```bash
 python -m unittest discover
-\`\`\`
+```
 
 Or you can run the test file directly:
 
-\`\`\`bash
+```bash
 python test_detector.py
-\`\`\`
+```
 
 ## Contributing
 
